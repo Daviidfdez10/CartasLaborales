@@ -275,10 +275,20 @@
         <span>Vista previa</span>
         <span class="preview-badge">En tiempo real</span>
       </div>
-     <div class="preview-body" id="preview" style="position:relative;">
-  <div id="preview-texto">Rellena los datos...</div>
-  <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,white);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;">
-    <span style="font-size:13px;color:var(--gris);">🔒 Completa el pago para ver la carta completa</span>
+   <div class="preview-body" id="preview" style="position:relative; overflow:hidden;">
+  <div id="preview-texto">Rellena los datos del formulario para ver tu carta aquí...</div>
+  <div id="preview-blur" style="
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:55%;
+    background:linear-gradient(transparent, white);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:1.25rem;">
+    <span style="font-size:12px;color:#888;background:white;padding:4px 12px;border-radius:20px;border:1px solid #e0ddd6;">
+      Paga para descargar la carta completa en PDF
+    </span>
   </div>
 </div>
     </div>
@@ -408,22 +418,22 @@ Agradezco la oportunidad y el trato recibido durante mi etapa en la empresa, y q
 Ruego acusen recibo de la presente comunicación.`;
   }
 
-  function actualizar() {
-    const d = obtenerDatos();
-    const fechaFmt = formatearFecha(d.fecha);
+function actualizar() {
+  const d = obtenerDatos();
+  const fechaFmt = formatearFecha(d.fecha);
 
-    // Comprobación de campos obligatorios para activar botón
-    const relleno = d.nombre && d.dni && d.puesto && d.empresa;
-    const btn = document.getElementById('btnPagar');
-    btn.classList.toggle('disabled', !relleno);
+  // Comprobación de campos obligatorios para activar botón
+  const relleno = d.nombre && d.dni && d.puesto && d.empresa;
+  const btn = document.getElementById('btnPagar');
+  btn.classList.toggle('disabled', !relleno);
 
-    // Preview
-    if (!d.nombre && !d.empresa) {
-      document.getElementById('preview').textContent = 'Rellena los datos del formulario para ver tu carta aquí...';
-      return;
-    }
+  // Preview — solo muestra el encabezado, el resto bloqueado
+  if (!d.nombre && !d.empresa) {
+    document.getElementById('preview-texto').textContent = 'Rellena los datos del formulario para ver tu carta aquí...';
+    return;
+  }
 
-    const preview = `${d.nombre || '[Tu nombre]'}
+  const previewCompleto = `${d.nombre || '[Tu nombre]'}
 DNI: ${d.dni || '[DNI]'}
 ${d.puesto || '[Puesto]'}
 
@@ -435,15 +445,10 @@ ${fechaFmt}
 
 Estimados señores/as:
 
-${construirCuerpo(d)}
+Por medio de la presente, yo, ${d.nombre || '[nombre]'}, con DNI...`;
 
-Atentamente,
-
-${d.nombre || '[Tu nombre]'}
-DNI: ${d.dni || '[DNI]'}`;
-
-    document.getElementById('preview').textContent = preview;
-  }
+  document.getElementById('preview-texto').textContent = previewCompleto;
+}
 
 function guardarYPagar(e) {
   e.preventDefault();
