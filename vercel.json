@@ -1,8 +1,1 @@
-﻿{
-  "version": 2,
-  "routes": [
-    { "src": "/baja-voluntaria", "dest": "/baja-voluntaria.html" },
-    { "src": "/exito", "dest": "/exito.html" },
-    { "src": "/(.*)", "dest": "/$1" }
-  ]
-}
+﻿{"version":2,"routes":[{"src":"/baja-voluntaria","dest":"/baja-voluntaria.html"},{"src":"/exito","dest":"/exito.html"},{"src":"/(.*?)","dest":"/$1"}]}
