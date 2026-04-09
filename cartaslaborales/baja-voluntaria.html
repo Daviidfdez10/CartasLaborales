@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta de Baja Voluntaria — Modelo oficial 2025 | PDF al instante</title>
+  <meta name="description" content="Genera tu carta de baja voluntaria en 2 minutos. Modelo actualizado, válido legalmente. Rellena el formulario y descarga en PDF por solo 2,99€. Sin registro.">
+  <link rel="canonical" href="https://cartaslaborales.es/baja-voluntaria">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <!-- jsPDF para generar el PDF en el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #1a6b4a;
+      --verde-claro: #e8f5ee;
+      --verde-mid: #2d9966;
+      --negro: #111;
+      --gris: #555;
+      --gris-claro: #f5f4f0;
+      --borde: #e0ddd6;
+      --blanco: #fff;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    body { font-family: var(--font-body); background: var(--gris-claro); color: var(--negro); }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2rem; border-bottom: 1px solid var(--borde);
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--verde); text-decoration: none; }
+    .logo span { color: var(--negro); }
+    .nav-back { font-size: 14px; color: var(--gris); text-decoration: none; }
+    .nav-back:hover { color: var(--negro); }
+
+    /* LAYOUT DOS COLUMNAS */
+    .layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+    }
+
+    /* PANEL IZQUIERDO: FORMULARIO */
+    .panel {
+      background: var(--blanco);
+      border-radius: 16px;
+      border: 1px solid var(--borde);
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 1.75rem 2rem 1.25rem;
+      border-bottom: 1px solid var(--borde);
+    }
+    .breadcrumb { font-size: 12px; color: var(--gris); margin-bottom: 0.5rem; }
+    .breadcrumb a { color: var(--verde); text-decoration: none; }
+    .panel-header h1 { font-family: var(--font-display); font-size: 26px; font-weight: 400; }
+    .panel-header p { font-size: 14px; color: var(--gris); margin-top: 6px; }
+
+    .panel-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .section-title {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--verde-mid); margin-bottom: 1rem;
+    }
+
+    .fields { display: flex; flex-direction: column; gap: 14px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 13px; color: var(--gris); font-weight: 500; }
+    .field input, .field select {
+      padding: 10px 13px; font-size: 14px; font-family: var(--font-body);
+      border: 1px solid var(--borde); border-radius: 8px;
+      background: var(--blanco); color: var(--negro);
+      outline: none; transition: border-color 0.15s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--verde-mid); }
+    .field input::placeholder { color: #bbb; }
+
+    .divider { border: none; border-top: 1px solid var(--borde); }
+
+    /* SIDEBAR DERECHA */
+    .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 90px; }
+
+    /* PREVIEW DE LA CARTA */
+    .preview-card {
+      background: var(--blanco);
+      border-radius: 16px;
+      border: 1px solid var(--borde);
+      overflow: hidden;
+    }
+    .preview-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--borde);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .preview-header span { font-size: 13px; font-weight: 500; }
+    .preview-badge { font-size: 11px; background: var(--verde-claro); color: var(--verde); padding: 3px 10px; border-radius: 100px; }
+    .preview-body {
+      padding: 1.25rem;
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--negro);
+      white-space: pre-wrap;
+      font-family: 'Georgia', serif;
+      min-height: 300px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    /* CAJA DE PAGO */
+    .pay-card {
+      background: var(--blanco);
+      border-radius: 16px;
+      border: 1px solid var(--borde);
+      padding: 1.5rem;
+    }
+    .pay-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .pay-price { font-size: 28px; font-weight: 500; color: var(--verde); }
+    .pay-desc { font-size: 13px; color: var(--gris); margin-bottom: 1.25rem; }
+    .pay-features { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.5rem; }
+    .pay-features li { font-size: 13px; color: var(--gris); display: flex; align-items: center; gap: 8px; }
+    .pay-features li::before { content: '✓'; color: var(--verde-mid); font-weight: 500; flex-shrink: 0; }
+
+    .btn-pay {
+      display: block; width: 100%; padding: 14px;
+      background: var(--verde); color: white;
+      border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 500;
+      font-family: var(--font-body);
+      cursor: pointer; text-align: center;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-pay:hover { background: #145538; }
+    .btn-pay.disabled { background: #ccc; cursor: not-allowed; pointer-events: none; }
+
+    .pay-note { font-size: 11px; color: var(--gris); text-align: center; margin-top: 10px; }
+
+    /* FAQ inline */
+    .faq-inline { background: var(--blanco); border-radius: 16px; border: 1px solid var(--borde); overflow: hidden; }
+    .faq-inline-title { padding: 1rem 1.25rem; font-size: 13px; font-weight: 500; border-bottom: 1px solid var(--borde); }
+    .faq-inline details { border-bottom: 1px solid var(--borde); }
+    .faq-inline details:last-child { border-bottom: none; }
+    .faq-inline summary { padding: 0.9rem 1.25rem; font-size: 13px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+    .faq-inline summary::after { content: '+'; color: var(--verde); }
+    .faq-inline details[open] summary::after { content: '−'; }
+    .faq-inline details p { padding: 0 1.25rem 1rem; font-size: 13px; color: var(--gris); line-height: 1.7; }
+
+    footer { border-top: 1px solid var(--borde); padding: 1.5rem; text-align: center; font-size: 12px; color: var(--gris); background: var(--blanco); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="logo">cartas<span>laborales</span></a>
+  <a href="/index.html" class="nav-back">← Todos los documentos</a>
+</nav>
+
+<div class="layout">
+
+  <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="breadcrumb"><a href="/index.html">Inicio</a> → Baja voluntaria</div>
+      <h1>Carta de baja voluntaria</h1>
+      <p>Rellena los datos y tu carta aparece a la derecha en tiempo real.</p>
+    </div>
+
+    <div class="panel-body">
+
+      <div>
+        <div class="section-title">Tus datos</div>
+        <div class="fields">
+          <div class="row2">
+            <div class="field">
+              <label>Nombre completo *</label>
+              <input id="nombre" type="text" placeholder="Ana García López" oninput="actualizar()">
+            </div>
+            <div class="field">
+              <label>DNI *</label>
+              <input id="dni" type="text" placeholder="12345678A" oninput="actualizar()">
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label>Puesto de trabajo *</label>
+              <input id="puesto" type="text" placeholder="Administrativo/a" oninput="actualizar()">
+            </div>
+            <div class="field">
+              <label>Fecha de la carta *</label>
+              <input id="fecha" type="date" oninput="actualizar()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div>
+        <div class="section-title">Datos de la empresa</div>
+        <div class="fields">
+          <div class="row2">
+            <div class="field">
+              <label>Nombre de la empresa *</label>
+              <input id="empresa" type="text" placeholder="Empresa S.L." oninput="actualizar()">
+            </div>
+            <div class="field">
+              <label>Responsable / RRHH</label>
+              <input id="responsable" type="text" placeholder="Departamento de RRHH" oninput="actualizar()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div>
+        <div class="section-title">Condiciones de salida</div>
+        <div class="fields">
+          <div class="row2">
+            <div class="field">
+              <label>Días de preaviso</label>
+              <select id="preaviso" onchange="calcularUltimoDia()">
+                <option value="15">15 días (habitual)</option>
+                <option value="30">30 días</option>
+                <option value="7">7 días</option>
+                <option value="0">Sin preaviso</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Último día trabajado</label>
+              <input id="ultimodia" type="date" oninput="actualizar()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Motivo (opcional — no es obligatorio indicarlo)</label>
+            <input id="motivo" type="text" placeholder="Ej: motivos personales" oninput="actualizar()">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COLUMNA DERECHA: SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- PREVIEW -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <span>Vista previa</span>
+        <span class="preview-badge">En tiempo real</span>
+      </div>
+      <div class="preview-body" id="preview">
+        Rellena los datos del formulario para ver tu carta aquí...
+      </div>
+    </div>
+
+    <!-- PAGO -->
+    <div class="pay-card">
+      <div class="pay-price-row">
+        <div class="pay-price">2,99 €</div>
+        <div style="font-size:13px;color:var(--gris);">pago único</div>
+      </div>
+      <div class="pay-desc">Descarga tu carta en PDF lista para entregar</div>
+      <ul class="pay-features">
+        <li>PDF profesional descargable al instante</li>
+        <li>Carta personalizada con tus datos</li>
+        <li>Válida legalmente en toda España</li>
+        <li>Sin suscripción ni cargos extra</li>
+        <li>No guardamos ningún dato tuyo</li>
+      </ul>
+
+      <!-- 
+        STRIPE: Reemplaza este href con tu Payment Link de Stripe
+        Ejemplo: href="https://buy.stripe.com/TU_LINK_AQUI"
+        
+        Para pasar los datos al PDF después del pago, guárdalos en
+        sessionStorage antes de redirigir a Stripe, y recupéralos
+        en la página de éxito (ver comentario abajo).
+      -->
+      <a href="#" class="btn-pay" id="btnPagar" onclick="guardarYPagar(event)">
+        Descargar carta en PDF — 2,99€
+      </a>
+      <p class="pay-note">🔒 Pago seguro con Stripe · No almacenamos tus datos</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-inline">
+      <div class="faq-inline-title">Preguntas frecuentes</div>
+      <details>
+        <summary>¿Cuánto preaviso debo dar?</summary>
+        <p>Lo habitual es 15 días. Algunos convenios exigen 30 días. Si no lo respetas, la empresa puede descontarte esos días del finiquito.</p>
+      </details>
+      <details>
+        <summary>¿Tengo que indicar el motivo?</summary>
+        <p>No. La ley no te obliga a explicar por qué te vas. Es opcional y puedes dejarlo en blanco.</p>
+      </details>
+      <details>
+        <summary>¿Cómo entrego la carta?</summary>
+        <p>Imprime dos copias, entrega una a RRHH y quédate la otra con el sello de recibido. También puedes enviarla por correo certificado o burofax.</p>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCHEMA SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuántos días de preaviso tengo que dar al hacer la baja voluntaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo más habitual según el Estatuto de los Trabajadores es 15 días de preaviso, aunque tu convenio colectivo puede establecer un plazo diferente, generalmente 30 días para puestos de mayor responsabilidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es obligatorio indicar el motivo en la carta de baja voluntaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. La normativa laboral española no obliga al trabajador a indicar los motivos de su dimisión. Puedes dejar el campo de motivo en blanco."
+      }
+    }
+  ]
+}
+</script>
+
+<footer>
+  © 2025 Cartaslaborales.es · <a href="/privacidad.html" style="color:inherit;">Privacidad</a> · <a href="/aviso-legal.html" style="color:inherit;">Aviso legal</a>
+</footer>
+
+<script src="js/generador.js"></script>
+<script>
+  // Establece fecha de hoy por defecto
+  const hoy = new Date().toISOString().split('T')[0];
+  document.getElementById('fecha').value = hoy;
+  calcularUltimoDia();
+
+  function calcularUltimoDia() {
+    const fecha = document.getElementById('fecha').value;
+    const preaviso = parseInt(document.getElementById('preaviso').value);
+    if (fecha && preaviso > 0) {
+      const ultimo = new Date(fecha + 'T12:00:00');
+      ultimo.setDate(ultimo.getDate() + preaviso);
+      document.getElementById('ultimodia').value = ultimo.toISOString().split('T')[0];
+    }
+    actualizar();
+  }
+
+  function obtenerDatos() {
+    return {
+      nombre: document.getElementById('nombre').value,
+      dni: document.getElementById('dni').value,
+      puesto: document.getElementById('puesto').value,
+      fecha: document.getElementById('fecha').value,
+      empresa: document.getElementById('empresa').value,
+      responsable: document.getElementById('responsable').value,
+      preaviso: document.getElementById('preaviso').value,
+      ultimodia: document.getElementById('ultimodia').value,
+      motivo: document.getElementById('motivo').value,
+    };
+  }
+
+  function construirCuerpo(d) {
+    const fechaFmt = formatearFecha(d.fecha);
+    const ultimoFmt = formatearFecha(d.ultimodia);
+    const motivoTexto = d.motivo ? `, por ${d.motivo},` : '';
+
+    return `Por medio de la presente, yo, ${d.nombre || '[nombre]'}, con DNI ${d.dni || '[DNI]'} y ocupando el puesto de ${d.puesto || '[puesto]'} en su empresa${motivoTexto} comunico mi decisión de causar baja voluntaria en la misma, con efectos a partir de la fecha de recepción de esta comunicación.
+
+De acuerdo con lo establecido en el convenio colectivo aplicable y en la normativa laboral vigente, les notifico con un preaviso de ${d.preaviso} días naturales, siendo mi último día de trabajo el ${ultimoFmt || '[fecha]'}.
+
+Agradezco la oportunidad y el trato recibido durante mi etapa en la empresa, y quedo a su disposición para facilitar la transición de mis funciones y el traspaso correspondiente durante el período de preaviso.
+
+Ruego acusen recibo de la presente comunicación.`;
+  }
+
+  function actualizar() {
+    const d = obtenerDatos();
+    const fechaFmt = formatearFecha(d.fecha);
+
+    // Comprobación de campos obligatorios para activar botón
+    const relleno = d.nombre && d.dni && d.puesto && d.empresa;
+    const btn = document.getElementById('btnPagar');
+    btn.classList.toggle('disabled', !relleno);
+
+    // Preview
+    if (!d.nombre && !d.empresa) {
+      document.getElementById('preview').textContent = 'Rellena los datos del formulario para ver tu carta aquí...';
+      return;
+    }
+
+    const preview = `${d.nombre || '[Tu nombre]'}
+DNI: ${d.dni || '[DNI]'}
+${d.puesto || '[Puesto]'}
+
+${d.empresa || '[Empresa]'}
+A/A: ${d.responsable || 'Departamento de RRHH'}
+
+${fechaFmt}
+
+
+Estimados señores/as:
+
+${construirCuerpo(d)}
+
+Atentamente,
+
+${d.nombre || '[Tu nombre]'}
+DNI: ${d.dni || '[DNI]'}`;
+
+    document.getElementById('preview').textContent = preview;
+  }
+
+  function guardarYPagar(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnPagar');
+    if (btn.classList.contains('disabled')) {
+      alert('Por favor, rellena al menos tu nombre, DNI, puesto y el nombre de la empresa.');
+      return;
+    }
+
+    // Guarda los datos en sessionStorage para recuperarlos tras el pago
+    sessionStorage.setItem('carta_datos', JSON.stringify(obtenerDatos()));
+    sessionStorage.setItem('carta_tipo', 'baja-voluntaria');
+
+    // REEMPLAZA ESTA URL CON TU PAYMENT LINK DE STRIPE
+    // window.location.href = 'https://buy.stripe.com/TU_LINK_AQUI';
+
+    // MODO DEMO: genera el PDF directamente sin pago
+    generarCartaPDF();
+  }
+
+  function generarCartaPDF() {
+    const d = obtenerDatos();
+    generarPDF({
+      nombre: d.nombre,
+      dni: d.dni,
+      puesto: d.puesto,
+      fecha: formatearFecha(d.fecha),
+      empresa: d.empresa,
+      responsable: d.responsable || 'Departamento de RRHH',
+      asunto: 'Comunicación de baja voluntaria',
+      cuerpo: construirCuerpo(d),
+      nombreArchivo: 'carta-baja-voluntaria',
+    });
+  }
+
+  // Inicializa el preview
+  actualizar();
+</script>
+
+</body>
+</html>

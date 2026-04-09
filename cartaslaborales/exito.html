@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago completado — Descarga tu carta | Cartaslaborales.es</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --verde: #1a6b4a; --verde-claro: #e8f5ee; --negro: #111;
+      --gris: #555; --gris-claro: #f5f4f0; --borde: #e0ddd6; --blanco: #fff;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    body { font-family: var(--font-body); background: var(--gris-claro); color: var(--negro); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
+    .card { background: var(--blanco); border-radius: 20px; border: 1px solid var(--borde); padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center; }
+    .icono { font-size: 48px; margin-bottom: 1.25rem; }
+    h1 { font-family: var(--font-display); font-size: 28px; font-weight: 400; margin-bottom: 0.75rem; }
+    p { font-size: 15px; color: var(--gris); margin-bottom: 1.75rem; line-height: 1.7; }
+    .btn {
+      display: inline-block; padding: 14px 2rem;
+      background: var(--verde); color: white;
+      border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 500; font-family: var(--font-body);
+      cursor: pointer; text-decoration: none; margin-bottom: 1rem; width: 100%;
+    }
+    .btn:hover { background: #145538; }
+    .btn-sec {
+      display: inline-block; padding: 12px 2rem;
+      background: transparent; color: var(--negro);
+      border: 1px solid var(--borde); border-radius: 10px;
+      font-size: 14px; font-family: var(--font-body);
+      cursor: pointer; text-decoration: none; width: 100%;
+    }
+    .btn-sec:hover { background: var(--gris-claro); }
+    .nota { font-size: 12px; color: var(--gris); margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icono">✅</div>
+  <h1>¡Pago completado!</h1>
+  <p>Tu carta está lista. Haz clic en el botón para descargar el PDF. Si tienes cualquier problema, escríbenos.</p>
+
+  <button class="btn" id="btnDescargar" onclick="descargarPDF()">
+    Descargar mi carta en PDF
+  </button>
+  <a href="/index.html" class="btn-sec">Volver al inicio</a>
+
+  <p class="nota">El PDF se genera en tu navegador. No guardamos ninguno de tus datos personales.</p>
+</div>
+
+<script src="js/generador.js"></script>
+<script>
+  // Recupera los datos guardados antes de redirigir a Stripe
+  const raw = sessionStorage.getItem('carta_datos');
+  const tipo = sessionStorage.getItem('carta_tipo');
+
+  if (!raw) {
+    document.getElementById('btnDescargar').textContent = 'No se encontraron datos — vuelve atrás';
+    document.getElementById('btnDescargar').onclick = () => history.back();
+  }
+
+  function descargarPDF() {
+    if (!raw) { alert('No se encontraron los datos de tu carta. Por favor vuelve atrás y rellena el formulario de nuevo.'); return; }
+
+    const d = JSON.parse(raw);
+
+    // Construye el cuerpo según el tipo de carta
+    let asunto = '';
+    let cuerpo = '';
+    let nombreArchivo = 'carta-laboral';
+
+    if (tipo === 'baja-voluntaria') {
+      asunto = 'Comunicación de baja voluntaria';
+      nombreArchivo = 'carta-baja-voluntaria';
+      const motivoTexto = d.motivo ? `, por ${d.motivo},` : '';
+      const ultimoFmt = formatearFecha(d.ultimodia);
+      cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni} y ocupando el puesto de ${d.puesto} en su empresa${motivoTexto} comunico mi decisión de causar baja voluntaria en la misma, con efectos a partir de la fecha de recepción de esta comunicación.
+
+De acuerdo con lo establecido en el convenio colectivo aplicable y en la normativa laboral vigente, les notifico con un preaviso de ${d.preaviso} días naturales, siendo mi último día de trabajo el ${ultimoFmt}.
+
+Agradezco la oportunidad y el trato recibido durante mi etapa en la empresa, y quedo a su disposición para facilitar la transición de mis funciones y el traspaso correspondiente durante el período de preaviso.
+
+Ruego acusen recibo de la presente comunicación.`;
+    }
+
+    generarPDF({
+      nombre: d.nombre,
+      dni: d.dni,
+      puesto: d.puesto,
+      fecha: formatearFecha(d.fecha),
+      empresa: d.empresa,
+      responsable: d.responsable || 'Departamento de RRHH',
+      asunto,
+      cuerpo,
+      nombreArchivo,
+    });
+
+    // Limpia sessionStorage tras la descarga
+    sessionStorage.removeItem('carta_datos');
+    sessionStorage.removeItem('carta_tipo');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartas Laborales — Documentos laborales en PDF al instante</title>
+  <meta name="description" content="Genera tu carta de baja voluntaria, reclamación de salario o cualquier documento laboral en 2 minutos. PDF descargable por 2,99€. Sin registro.">
+  <link rel="canonical" href="https://cartaslaborales.es/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #1a6b4a;
+      --verde-claro: #e8f5ee;
+      --verde-mid: #2d9966;
+      --negro: #111;
+      --gris: #555;
+      --gris-claro: #f5f4f0;
+      --borde: #e0ddd6;
+      --blanco: #fff;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--blanco);
+      color: var(--negro);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--borde);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--verde);
+      text-decoration: none;
+    }
+    .logo span { color: var(--negro); }
+    nav a {
+      font-size: 14px;
+      color: var(--gris);
+      text-decoration: none;
+      margin-left: 1.5rem;
+    }
+    nav a:hover { color: var(--negro); }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--verde-claro);
+      color: var(--verde);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #b8dfc9;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--negro);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--verde);
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--gris);
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+    .trust-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--gris);
+    }
+    .trust-row span::before { content: '✓ '; color: var(--verde-mid); font-weight: 500; }
+
+    /* CARTAS GRID */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--verde-mid);
+      margin-bottom: 0.75rem;
+    }
+    .section h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    .cartas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--borde);
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .carta-card {
+      background: var(--blanco);
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+    .carta-card:hover { background: var(--gris-claro); }
+    .carta-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+    .carta-card h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--negro);
+    }
+    .carta-card p {
+      font-size: 13px;
+      color: var(--gris);
+      flex: 1;
+    }
+    .carta-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+    .carta-precio {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--verde);
+    }
+    .carta-cta {
+      font-size: 13px;
+      color: var(--gris);
+    }
+    .carta-card:hover .carta-cta { color: var(--verde); }
+
+    /* COMO FUNCIONA */
+    .como {
+      background: var(--gris-claro);
+    }
+    .como .section { padding: 4rem 2rem; }
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .paso {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .paso-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--verde);
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .paso h3 { font-size: 16px; font-weight: 500; }
+    .paso p { font-size: 14px; color: var(--gris); }
+
+    /* FAQ */
+    .faq-list { margin-top: 2rem; border-top: 1px solid var(--borde); }
+    .faq-item { border-bottom: 1px solid var(--borde); padding: 1.25rem 0; }
+    .faq-item summary {
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::after { content: '+'; font-size: 20px; color: var(--verde); }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p { font-size: 14px; color: var(--gris); margin-top: 0.75rem; line-height: 1.7; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--borde);
+      padding: 2rem;
+      text-align: center;
+      font-size: 13px;
+      color: var(--gris);
+    }
+    footer a { color: var(--gris); text-decoration: none; margin: 0 0.75rem; }
+    footer a:hover { color: var(--negro); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .hero { padding: 3rem 1rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">cartas<span>laborales</span></a>
+  <div>
+    <a href="#documentos">Documentos</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Sin registro · Pago único · PDF inmediato</div>
+  <h1>Tu carta laboral,<br><em>lista en 2 minutos</em></h1>
+  <p>Documentos legales para trabajadores. Rellena el formulario, paga y descarga tu PDF al instante.</p>
+  <div class="trust-row">
+    <span>Válido legalmente</span>
+    <span>No guardamos tus datos</span>
+    <span>Pago seguro con Stripe</span>
+    <span>Desde 2,99€</span>
+  </div>
+</section>
+
+<section class="section" id="documentos">
+  <div class="section-label">Documentos disponibles</div>
+  <h2>¿Qué necesitas hoy?</h2>
+
+  <div class="cartas-grid">
+    <a href="/baja-voluntaria.html" class="carta-card">
+      <div class="carta-icon">✉️</div>
+      <h3>Carta de baja voluntaria</h3>
+      <p>Comunica tu dimisión de forma profesional y legal. Incluye el preaviso correcto según tu convenio.</p>
+      <div class="carta-footer">
+        <span class="carta-precio">2,99 €</span>
+        <span class="carta-cta">Generar →</span>
+      </div>
+    </a>
+
+    <a href="/reclamacion-salario.html" class="carta-card">
+      <div class="carta-icon">💶</div>
+      <h3>Reclamación de salario impagado</h3>
+      <p>Reclama formalmente los salarios que te deben antes de ir a la vía judicial o a la Inspección.</p>
+      <div class="carta-footer">
+        <span class="carta-precio">2,99 €</span>
+        <span class="carta-cta">Generar →</span>
+      </div>
+    </a>
+
+    <a href="/respuesta-despido.html" class="carta-card">
+      <div class="carta-icon">⚖️</div>
+      <h3>Respuesta a un despido</h3>
+      <p>No firmes nada todavía. Envía esta carta alegando improcedencia y protege tus derechos.</p>
+      <div class="carta-footer">
+        <span class="carta-precio">2,99 €</span>
+        <span class="carta-cta">Generar →</span>
+      </div>
+    </a>
+
+    <a href="/solicitud-vacaciones.html" class="carta-card">
+      <div class="carta-icon">🌴</div>
+      <h3>Reclamación de vacaciones no disfrutadas</h3>
+      <p>Si la empresa no te deja coger tus vacaciones o no te las paga al salir, reclama con esta carta.</p>
+      <div class="carta-footer">
+        <span class="carta-precio">2,99 €</span>
+        <span class="carta-cta">Generar →</span>
+      </div>
+    </a>
+
+    <a href="/excedencia.html" class="carta-card">
+      <div class="carta-icon">⏸️</div>
+      <h3>Solicitud de excedencia voluntaria</h3>
+      <p>Pide una pausa en tu contrato de forma correcta para que la empresa no pueda negársela.</p>
+      <div class="carta-footer">
+        <span class="carta-precio">2,99 €</span>
+        <span class="carta-cta">Generar →</span>
+      </div>
+    </a>
+
+    <a href="/denuncia-inspeccion.html" class="carta-card">
+      <div class="carta-icon">🏛️</div>
+      <h3>Denuncia a Inspección de Trabajo</h3>
+      <p>Comunica irregularidades laborales al organismo oficial. Formulario guiado paso a paso.</p>
+      <div class="carta-footer">
+        <span class="carta-precio">2,99 €</span>
+        <span class="carta-cta">Generar →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="como">
+  <div class="section" id="como-funciona">
+    <div class="section-label">Proceso</div>
+    <h2>Tan sencillo como esto</h2>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-num">1</div>
+        <h3>Elige tu documento</h3>
+        <p>Selecciona el tipo de carta que necesitas de nuestra lista.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">2</div>
+        <h3>Rellena el formulario</h3>
+        <p>Te pedimos solo los datos imprescindibles. Ves la carta en tiempo real mientras escribes.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">3</div>
+        <h3>Paga 2,99€</h3>
+        <p>Pago seguro con Stripe. Sin suscripción, sin sorpresas. Un pago, un documento.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">4</div>
+        <h3>Descarga tu PDF</h3>
+        <p>Tu carta lista para imprimir o enviar por email al instante.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="faq">
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2>Lo que más nos preguntan</h2>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>¿Son válidas legalmente estas cartas?</summary>
+      <p>Sí. Las plantillas están redactadas conforme al Estatuto de los Trabajadores y la normativa laboral española vigente. Se actualizan periódicamente. Para casos complejos o litigios siempre recomendamos consultar con un abogado laboralista.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Guardáis mis datos personales?</summary>
+      <p>No. El PDF se genera directamente en tu navegador. Tus datos nunca pasan por nuestros servidores. Una vez cierras la página, no queda rastro de nada.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Cuántos días de preaviso tengo que dar en una baja voluntaria?</summary>
+      <p>Depende de tu convenio colectivo, pero lo más habitual en España es 15 días. Algunos convenios exigen 30 días para puestos de responsabilidad. El formulario te ayuda a calcularlo correctamente.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Qué pasa si me equivoco rellenando el formulario?</summary>
+      <p>Puedes volver atrás y corregirlo antes de pagar. Ves la carta en tiempo real, así que verás cualquier error antes de descargar nada.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Puedo pedir un reembolso?</summary>
+      <p>Al ser un producto digital descargable al instante, no ofrecemos reembolsos una vez descargado el PDF. Si tienes cualquier problema técnico, escríbenos y lo solucionamos.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:0.75rem;">© 2025 Cartaslaborales.es · Documentos laborales en PDF</p>
+  <div>
+    <a href="/privacidad.html">Privacidad</a>
+    <a href="/aviso-legal.html">Aviso legal</a>
+    <a href="/contacto.html">Contacto</a>
+  </div>
+</footer>
+
+<!-- Schema FAQ para Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Son válidas legalmente las cartas laborales generadas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Las plantillas están redactadas conforme al Estatuto de los Trabajadores y la normativa laboral española vigente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos días de preaviso tengo que dar en una baja voluntaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo más habitual en España es 15 días, aunque algunos convenios colectivos exigen 30 días para determinados puestos."
+      }
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
