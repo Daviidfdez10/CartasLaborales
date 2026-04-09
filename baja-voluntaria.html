@@ -275,9 +275,12 @@
         <span>Vista previa</span>
         <span class="preview-badge">En tiempo real</span>
       </div>
-      <div class="preview-body" id="preview">
-        Rellena los datos del formulario para ver tu carta aquí...
-      </div>
+     <div class="preview-body" id="preview" style="position:relative;">
+  <div id="preview-texto">Rellena los datos...</div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(transparent,white);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;">
+    <span style="font-size:13px;color:var(--gris);">🔒 Completa el pago para ver la carta completa</span>
+  </div>
+</div>
     </div>
 
     <!-- PAGO -->
