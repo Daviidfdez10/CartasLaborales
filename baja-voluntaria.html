@@ -442,24 +442,38 @@ DNI: ${d.dni || '[DNI]'}`;
     document.getElementById('preview').textContent = preview;
   }
 
-  function guardarYPagar(e) {
-    e.preventDefault();
-    const btn = document.getElementById('btnPagar');
-    if (btn.classList.contains('disabled')) {
-      alert('Por favor, rellena al menos tu nombre, DNI, puesto y el nombre de la empresa.');
-      return;
-    }
-
-    // Guarda los datos en sessionStorage para recuperarlos tras el pago
-    sessionStorage.setItem('carta_datos', JSON.stringify(obtenerDatos()));
-    sessionStorage.setItem('carta_tipo', 'baja-voluntaria');
-
-    // REEMPLAZA ESTA URL CON TU PAYMENT LINK DE STRIPE
-    window.location.href = 'https://buy.stripe.com/test_4gM3cvasO4mw7Ni9IE2go00';
-
-    // MODO DEMO: genera el PDF directamente sin pago
-    //generarCartaPDF();
+function guardarYPagar(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btnPagar');
+  if (btn.classList.contains('disabled')) {
+    alert('Por favor, rellena al menos tu nombre, DNI, puesto y el nombre de la empresa.');
+    return;
   }
+
+  const d = obtenerDatos();
+  const params = new URLSearchParams({
+    nombre: d.nombre,
+    dni: d.dni,
+    puesto: d.puesto,
+    fecha: d.fecha,
+    empresa: d.empresa,
+    responsable: d.responsable || 'Departamento de RRHH',
+    preaviso: d.preaviso,
+    ultimodia: d.ultimodia,
+    motivo: d.motivo || '',
+    tipo: 'baja-voluntaria'
+  });
+
+  // Guarda en localStorage como respaldo
+  localStorage.setItem('carta_datos', JSON.stringify(d));
+  localStorage.setItem('carta_tipo', 'baja-voluntaria');
+
+  const exitoUrl = encodeURIComponent(
+    'https://cartas-laborales-git-main-daviidfdez10s-projects.vercel.app/exito.html?' + params.toString()
+  );
+
+  window.location.href = 'https://buy.stripe.com/test_4gM3cvasO4mw7Ni9IE2go00?success_url=' + exitoUrl;
+}
 
   function generarCartaPDF() {
     const d = obtenerDatos();
