@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /exito.html
+Disallow: /api/
+
+Sitemap: https://cartas-laborales.vercel.app/sitemap.xml
