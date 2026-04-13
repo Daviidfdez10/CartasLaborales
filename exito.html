@@ -77,6 +77,33 @@ async function cargarDatos() {
   }
 }
 
+function descargarPDF() {
+  if (!d) { alert('No se encontraron los datos. Vuelve atrás.'); return; }
+
+  const motivoTexto = d.motivo ? `, por ${d.motivo},` : '';
+  const cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni} y ocupando el puesto de ${d.puesto} en su empresa${motivoTexto} comunico mi decisión de causar baja voluntaria en la misma.
+
+De acuerdo con lo establecido en el convenio colectivo aplicable, les notifico con un preaviso de ${d.preaviso} días naturales, siendo mi último día de trabajo el ${formatearFecha(d.ultimodia)}.
+
+Agradezco la oportunidad y quedo a su disposición para facilitar la transición.
+
+Ruego acusen recibo de la presente comunicación.`;
+
+  generarPDF({
+    nombre: d.nombre,
+    dni: d.dni,
+    puesto: d.puesto,
+    fecha: formatearFecha(d.fecha),
+    empresa: d.empresa,
+    responsable: d.responsable || 'Departamento de RRHH',
+    asunto: 'Comunicación de baja voluntaria',
+    cuerpo: cuerpo,
+    nombreArchivo: 'carta-baja-voluntaria',
+  });
+
+  localStorage.removeItem('bin_id');
+}
+
 cargarDatos();
 
 </script>
