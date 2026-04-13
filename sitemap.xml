@@ -64,4 +64,11 @@
     <priority>0.3</priority>
   </url>
 
+<url>
+  <loc>https://cartas-laborales.vercel.app/blog/dias-preaviso-baja-voluntaria.html</loc>
+  <lastmod>2025-04-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
 </urlset>
