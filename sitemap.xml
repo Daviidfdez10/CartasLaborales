@@ -71,4 +71,18 @@
   <priority>0.8</priority>
 </url>
 
+<url>
+  <loc>https://cartas-laborales.vercel.app/blog/que-pasa-si-no-firmo-finiquito.html</loc>
+  <lastmod>2025-04-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://cartas-laborales.vercel.app/blog/cuanto-me-pagan-si-me-despiden.html</loc>
+  <lastmod>2025-04-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
 </urlset>

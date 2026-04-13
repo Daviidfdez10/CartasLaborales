@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Cuánto me tienen que pagar si me despiden? Indemnización 2025 | Cartaslaborales.es</title>
+  <meta name="description" content="Calcula cuánto te corresponde si te despiden. Te explicamos la indemnización por despido procedente, improcedente y por causas objetivas. Guía actualizada 2025.">
+  <link rel="canonical" href="https://cartas-laborales.vercel.app/blog/cuanto-me-pagan-si-me-despiden.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --verde: #1a6b4a; --verde-claro: #e8f5ee; --verde-mid: #2d9966; --negro: #111; --gris: #555; --gris-claro: #f5f4f0; --borde: #e0ddd6; --blanco: #fff; --font-display: 'Fraunces', Georgia, serif; --font-body: 'DM Sans', system-ui, sans-serif; }
+    body { font-family: var(--font-body); background: var(--blanco); color: var(--negro); line-height: 1.7; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid var(--borde); background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--verde); text-decoration: none; }
+    .logo span { color: var(--negro); }
+    nav a.back { font-size: 14px; color: var(--gris); text-decoration: none; }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+    .article-meta { margin-bottom: 2rem; }
+    .article-category { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 0.75rem; }
+    h1 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 42px); font-weight: 400; line-height: 1.2; margin-bottom: 1rem; }
+    .article-intro { font-size: 18px; color: var(--gris); margin-bottom: 1.5rem; line-height: 1.7; }
+    .article-date { font-size: 13px; color: var(--gris); }
+    .article-body h2 { font-family: var(--font-display); font-size: 24px; font-weight: 400; margin: 2.5rem 0 1rem; }
+    .article-body h3 { font-size: 18px; font-weight: 500; margin: 2rem 0 0.75rem; }
+    .article-body p { font-size: 16px; color: #333; margin-bottom: 1.25rem; line-height: 1.8; }
+    .article-body ul, .article-body ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .article-body li { font-size: 16px; color: #333; margin-bottom: 0.5rem; line-height: 1.7; }
+    .article-body strong { font-weight: 500; color: var(--negro); }
+    .highlight-box { background: var(--verde-claro); border-left: 3px solid var(--verde); border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem; margin: 2rem 0; }
+    .highlight-box p { margin: 0; color: #1a4a35; }
+    .warning-box { background: #faeeda; border-left: 3px solid #BA7517; border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem; margin: 2rem 0; }
+    .warning-box p { margin: 0; color: #5a3a00; }
+    .calc-box { background: var(--gris-claro); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+    .calc-box h3 { font-size: 16px; font-weight: 500; margin-bottom: 1rem; }
+    .calc-row { display: flex; flex-direction: column; gap: 10px; }
+    .calc-field { display: flex; flex-direction: column; gap: 4px; }
+    .calc-field label { font-size: 13px; color: var(--gris); }
+    .calc-field input { padding: 9px 12px; font-size: 14px; font-family: var(--font-body); border: 1px solid var(--borde); border-radius: 8px; background: var(--blanco); outline: none; }
+    .calc-result { margin-top: 1rem; padding: 1rem; background: var(--blanco); border-radius: 8px; border: 1px solid var(--borde); }
+    .calc-result .label { font-size: 12px; color: var(--gris); margin-bottom: 4px; }
+    .calc-result .amount { font-size: 24px; font-weight: 500; color: var(--verde); }
+    .table-wrap { overflow-x: auto; margin: 2rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th { background: var(--gris-claro); padding: 10px 14px; text-align: left; font-weight: 500; font-size: 13px; border-bottom: 1px solid var(--borde); }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--borde); color: #333; }
+    tr:last-child td { border-bottom: none; }
+    .cta-box { background: var(--negro); color: white; border-radius: 16px; padding: 2rem; margin: 3rem 0; text-align: center; }
+    .cta-box h3 { font-family: var(--font-display); font-size: 24px; font-weight: 400; margin-bottom: 0.75rem; }
+    .cta-box p { font-size: 15px; color: #aaa; margin-bottom: 1.5rem; }
+    .cta-btn { display: inline-block; background: var(--verde); color: white; padding: 13px 2rem; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 500; }
+    .cta-btn:hover { background: #145538; }
+    .faq-section { margin-top: 3rem; border-top: 1px solid var(--borde); padding-top: 2rem; }
+    .faq-section h2 { font-family: var(--font-display); font-size: 24px; font-weight: 400; margin-bottom: 1.5rem; }
+    details { border-bottom: 1px solid var(--borde); }
+    summary { padding: 1rem 0; font-size: 15px; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+    summary::after { content: '+'; color: var(--verde); font-size: 18px; }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 0 1rem; font-size: 15px; color: var(--gris); line-height: 1.7; }
+    .related { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--borde); }
+    .related h3 { font-size: 16px; font-weight: 500; margin-bottom: 1rem; }
+    .related-links { display: flex; flex-direction: column; gap: 8px; }
+    .related-links a { font-size: 15px; color: var(--verde); text-decoration: none; }
+    .related-links a:hover { text-decoration: underline; }
+    footer { border-top: 1px solid var(--borde); padding: 1.5rem; text-align: center; font-size: 12px; color: var(--gris); margin-top: 3rem; }
+    footer a { color: var(--gris); text-decoration: none; margin: 0 0.5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="logo">cartas<span>laborales</span></a>
+  <a href="/index.html" class="back">← Inicio</a>
+</nav>
+
+<article class="article-wrap">
+  <div class="article-meta">
+    <span class="article-category">Despido e indemnización</span>
+    <h1>¿Cuánto me tienen que pagar si me despiden?</h1>
+    <p class="article-intro">La indemnización por despido depende del tipo de despido y de los años que llevas en la empresa. Te lo explicamos con ejemplos prácticos y una calculadora.</p>
+    <span class="article-date">Actualizado: abril de 2025</span>
+  </div>
+
+  <div class="article-body">
+
+    <h2>Tipos de despido y su indemnización</h2>
+    <p>En España existen varios tipos de despido, cada uno con una indemnización diferente. Es fundamental saber cuál es tu caso para conocer lo que te corresponde.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tipo de despido</th><th>Indemnización</th><th>Máximo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Despido improcedente</td><td>33 días/año trabajado</td><td>24 mensualidades</td></tr>
+          <tr><td>Despido por causas objetivas</td><td>20 días/año trabajado</td><td>12 mensualidades</td></tr>
+          <tr><td>Despido disciplinario procedente</td><td>0 € (sin indemnización)</td><td>—</td></tr>
+          <tr><td>ERE / despido colectivo</td><td>20 días/año trabajado</td><td>12 mensualidades</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <p>El despido improcedente es el más beneficioso para el trabajador: 33 días de salario por cada año trabajado. Si la empresa no justifica el despido o el motivo no es válido, el despido es improcedente.</p>
+    </div>
+
+    <h2>Calculadora de indemnización por despido</h2>
+    <p>Introduce tus datos para calcular tu indemnización orientativa:</p>
+
+    <div class="calc-box">
+      <h3>Calcula tu indemnización</h3>
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>Salario bruto anual (€)</label>
+          <input type="number" id="salario" placeholder="25000" oninput="calcular()">
+        </div>
+        <div class="calc-field">
+          <label>Años trabajados en la empresa</label>
+          <input type="number" id="anos" placeholder="3" oninput="calcular()">
+        </div>
+        <div class="calc-field">
+          <label>Tipo de despido</label>
+          <select id="tipo" onchange="calcular()" style="padding:9px 12px;font-size:14px;border:1px solid #e0ddd6;border-radius:8px;background:white;font-family:inherit;">
+            <option value="33">Improcedente (33 días/año)</option>
+            <option value="20">Causas objetivas (20 días/año)</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="resultado" style="display:none">
+        <div class="label">Indemnización estimada</div>
+        <div class="amount" id="importe">—</div>
+        <div style="font-size:12px;color:#888;margin-top:4px;">Cálculo orientativo. Consulta con un abogado para tu caso concreto.</div>
+      </div>
+    </div>
+
+    <h2>¿Cuándo es improcedente un despido?</h2>
+    <p>Un despido es improcedente cuando la empresa no puede demostrar que existe una causa válida para despedirte, o cuando no cumple con los requisitos formales (como no entregarte la carta de despido por escrito).</p>
+    <p>Algunos casos frecuentes de despido improcedente:</p>
+    <ul>
+      <li>Despido sin carta escrita o con motivos vagos</li>
+      <li>Despido durante una baja médica sin causa adicional</li>
+      <li>Despido por reclamar tus derechos laborales</li>
+      <li>Despido sin respetar el procedimiento legal</li>
+      <li>Motivos que no se pueden demostrar</li>
+    </ul>
+
+    <h2>¿Qué puedo hacer si no estoy de acuerdo con el despido?</h2>
+    <p>Tienes <strong>20 días hábiles</strong> desde la fecha del despido para actuar. Es un plazo de caducidad — si lo dejas pasar, pierdes el derecho a impugnarlo.</p>
+    <ol>
+      <li>Firma la carta de despido añadiendo "no conforme"</li>
+      <li>Guarda copia de toda la documentación</li>
+      <li>Presenta una papeleta de conciliación ante el SMAC</li>
+      <li>Si no hay acuerdo, presenta demanda en el Juzgado de lo Social</li>
+    </ol>
+
+    <div class="warning-box">
+      <p>No dejes pasar los 20 días hábiles. Es el plazo más importante en un despido. Una vez caducado, no puedes impugnarlo aunque el despido sea claramente improcedente.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>¿Te acaban de despedir?</h3>
+      <p>Genera tu carta de respuesta al despido en 2 minutos. Protege tus derechos antes de que caduquen los plazos.</p>
+      <a href="/respuesta-despido.html" class="cta-btn">Generar carta de respuesta</a>
+    </div>
+
+    <div class="faq-section">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿La indemnización tributa en el IRPF?</summary>
+        <p>Las indemnizaciones por despido improcedente están exentas de IRPF hasta el límite legal (33 días/año con máximo de 24 mensualidades). El exceso sí tributa.</p>
+      </details>
+      <details>
+        <summary>¿Cobro el paro además de la indemnización?</summary>
+        <p>Sí. La indemnización y la prestación por desempleo son compatibles. Son dos derechos independientes. La indemnización la paga la empresa, el paro lo paga el SEPE.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si la empresa no me paga la indemnización?</summary>
+        <p>Puedes reclamarla ante el Juzgado de lo Social. En casos de insolvencia de la empresa, el FOGASA (Fondo de Garantía Salarial) puede cubrir parte de la indemnización.</p>
+      </details>
+      <details>
+        <summary>¿Me pueden despedir estando de baja médica?</summary>
+        <p>Sí, pero con restricciones. La baja médica no es una causa de despido válida por sí sola. Si te despiden durante la baja sin otra causa justificada, el despido es improcedente.</p>
+      </details>
+    </div>
+
+    <div class="related">
+      <h3>También te puede interesar</h3>
+      <div class="related-links">
+        <a href="/respuesta-despido.html">→ Carta de respuesta a un despido</a>
+        <a href="/reclamacion-salario.html">→ Reclamación de salario impagado</a>
+        <a href="/denuncia-inspeccion.html">→ Denuncia a la Inspección de Trabajo</a>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<script>
+  function calcular() {
+    const salario = parseFloat(document.getElementById('salario').value);
+    const anos = parseFloat(document.getElementById('anos').value);
+    const dias = parseInt(document.getElementById('tipo').value);
+
+    if (!salario || !anos) { document.getElementById('resultado').style.display = 'none'; return; }
+
+    const salarioDia = salario / 365;
+    const maxMeses = dias === 33 ? 24 : 12;
+    const indemnizacion = Math.min(salarioDia * dias * anos, (salario / 12) * maxMeses);
+
+    document.getElementById('importe').textContent = indemnizacion.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    document.getElementById('resultado').style.display = 'block';
+  }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto me tienen que pagar si me despiden improcedentemente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En un despido improcedente te corresponden 33 días de salario por año trabajado, con un máximo de 24 mensualidades. Por ejemplo, con 3 años trabajados y un salario de 25.000€ anuales, la indemnización sería de unos 6.781€."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo tengo para reclamar un despido?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tienes 20 días hábiles desde la fecha de efectos del despido para presentar la papeleta de conciliación previa. Es un plazo de caducidad que no se puede recuperar una vez transcurrido."
+      }
+    }
+  ]
+}
+</script>
+
+<footer>
+  © 2025 Cartaslaborales.es ·
+  <a href="/privacidad.html">Privacidad</a>
+  <a href="/aviso-legal.html">Aviso legal</a>
+  <a href="/index.html">Inicio</a>
+</footer>
+
+</body>
+</html>
