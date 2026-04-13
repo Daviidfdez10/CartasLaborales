@@ -192,7 +192,7 @@
       const response = await fetch('/api/guardar-datos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...obtenerDatos(), tipo: 'reclamacion-vacaciones' }) });
       const data = await response.json();
       localStorage.setItem('bin_id', data.binId);
-      window.location.href = 'https://buy.stripe.com/TU_LINK_VACACIONES';
+      window.location.href = 'https://buy.stripe.com/7sY28reNA0163HadumcfK03';
     } catch (err) {
       btn.textContent = 'Descargar carta en PDF — 2,99€';
       btn.style.pointerEvents = 'auto';

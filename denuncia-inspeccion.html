@@ -188,7 +188,7 @@
       const response = await fetch('/api/guardar-datos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...obtenerDatos(), tipo: 'denuncia-inspeccion' }) });
       const data = await response.json();
       localStorage.setItem('bin_id', data.binId);
-      window.location.href = 'https://buy.stripe.com/TU_LINK_DENUNCIA';
+      window.location.href = 'https://buy.stripe.com/8x2cN57l83di2D6aiacfK05';
     } catch (err) {
       btn.textContent = 'Descargar denuncia en PDF — 2,99€';
       btn.style.pointerEvents = 'auto';
