@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta de Reclamación de Salario Impagado — Modelo 2025 | PDF al instante</title>
-  <meta name="description" content="Reclama tu salario impagado en 2 minutos. Modelo actualizado, válido legalmente. Descarga en PDF por solo 2,99€. Sin registro.">
-  <link rel="canonical" href="https://cartaslaborales.es/reclamacion-salario">
+  <title>Carta de Respuesta a un Despido — Modelo 2025 | PDF al instante</title>
+  <meta name="description" content="Responde a tu despido alegando improcedencia en 2 minutos. Modelo actualizado, válido legalmente. Descarga en PDF por solo 2,99€. Sin registro.">
+  <link rel="canonical" href="https://cartaslaborales.es/respuesta-despido">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -32,15 +32,17 @@
     .breadcrumb a { color: var(--verde); text-decoration: none; }
     .panel-header h1 { font-family: var(--font-display); font-size: 26px; font-weight: 400; }
     .panel-header p { font-size: 14px; color: var(--gris); margin-top: 6px; }
+    .aviso { background: #faeeda; border-radius: 8px; padding: 0.9rem 1.1rem; font-size: 13px; color: #854F0B; margin-top: 0.75rem; line-height: 1.6; }
     .panel-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
     .section-title { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--verde-mid); margin-bottom: 1rem; }
     .fields { display: flex; flex-direction: column; gap: 14px; }
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label { font-size: 13px; color: var(--gris); font-weight: 500; }
-    .field input, .field select { padding: 10px 13px; font-size: 14px; font-family: var(--font-body); border: 1px solid var(--borde); border-radius: 8px; background: var(--blanco); color: var(--negro); outline: none; transition: border-color 0.15s; }
-    .field input:focus, .field select:focus { border-color: var(--verde-mid); }
-    .field input::placeholder { color: #bbb; }
+    .field input, .field select, .field textarea { padding: 10px 13px; font-size: 14px; font-family: var(--font-body); border: 1px solid var(--borde); border-radius: 8px; background: var(--blanco); color: var(--negro); outline: none; transition: border-color 0.15s; }
+    .field textarea { resize: vertical; min-height: 80px; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--verde-mid); }
+    .field input::placeholder, .field textarea::placeholder { color: #bbb; }
     .divider { border: none; border-top: 1px solid var(--borde); }
     .sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 90px; }
     .preview-card { background: var(--blanco); border-radius: 16px; border: 1px solid var(--borde); overflow: hidden; }
@@ -83,9 +85,10 @@
 
   <div class="panel">
     <div class="panel-header">
-      <div class="breadcrumb"><a href="/index.html">Inicio</a> → Reclamación de salario</div>
-      <h1>Reclamación de salario impagado</h1>
-      <p>Reclama formalmente los salarios que te deben antes de acudir a la vía judicial.</p>
+      <div class="breadcrumb"><a href="/index.html">Inicio</a> → Respuesta a un despido</div>
+      <h1>Respuesta a un despido</h1>
+      <p>No firmes nada todavía. Envía esta carta alegando improcedencia y protege tus derechos.</p>
+      <div class="aviso">⚠️ No firmes el finiquito sin poner "no conforme" si no estás de acuerdo con el despido. Tienes 20 días hábiles para impugnarlo.</div>
     </div>
 
     <div class="panel-body">
@@ -137,35 +140,30 @@
       <hr class="divider">
 
       <div>
-        <div class="section-title">Detalles de la reclamación</div>
+        <div class="section-title">Detalles del despido</div>
         <div class="fields">
           <div class="row2">
             <div class="field">
-              <label>Meses impagados *</label>
-              <input id="meses" type="text" placeholder="Ej: enero y febrero de 2025" oninput="actualizar()">
+              <label>Fecha del despido *</label>
+              <input id="fechadespido" type="date" oninput="actualizar()">
             </div>
             <div class="field">
-              <label>Importe total reclamado *</label>
-              <input id="importe" type="text" placeholder="Ej: 2.400€" oninput="actualizar()">
+              <label>Tipo de despido comunicado</label>
+              <select id="tipodespido" onchange="actualizar()">
+                <option value="disciplinario">Disciplinario</option>
+                <option value="objetivo">Por causas objetivas</option>
+                <option value="verbal">Verbal / sin carta</option>
+                <option value="otro">Otro</option>
+              </select>
             </div>
           </div>
-          <div class="row2">
-            <div class="field">
-              <label>Plazo para pagar</label>
-              <select id="plazo" onchange="actualizar()">
-                <option value="5">5 días hábiles</option>
-                <option value="10">10 días hábiles</option>
-                <option value="15">15 días hábiles</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>¿Has reclamado antes?</label>
-              <select id="reclamacionprevia" onchange="actualizar()">
-                <option value="no">No, es la primera vez</option>
-                <option value="si">Sí, verbalmente</option>
-                <option value="escrito">Sí, por escrito</option>
-              </select>
-            </div>
+          <div class="field">
+            <label>Motivo alegado por la empresa (opcional)</label>
+            <input id="motivoempresa" type="text" placeholder="Ej: bajo rendimiento, causas económicas..." oninput="actualizar()">
+          </div>
+          <div class="field">
+            <label>Años trabajados en la empresa *</label>
+            <input id="años" type="text" placeholder="Ej: 3 años y 4 meses" oninput="actualizar()">
           </div>
         </div>
       </div>
@@ -210,16 +208,16 @@
     <div class="faq-inline">
       <div class="faq-inline-title">Preguntas frecuentes</div>
       <details>
-        <summary>¿Cuándo puedo reclamar el salario?</summary>
-        <p>Puedes reclamar en cuanto la empresa no te paga en la fecha acordada. El plazo para reclamar por vía judicial es de 1 año desde que debiste cobrar.</p>
+        <summary>¿Tengo que firmar la carta de despido?</summary>
+        <p>Debes firmarla solo como "enterado" para acreditar que la recibiste, pero puedes añadir "no conforme" si no estás de acuerdo con el motivo o la indemnización.</p>
       </details>
       <details>
-        <summary>¿Qué pasa si no me pagan tras la carta?</summary>
-        <p>Puedes presentar una demanda en el Juzgado de lo Social o una denuncia ante la Inspección de Trabajo. Esta carta es el paso previo recomendado.</p>
+        <summary>¿Cuánto tiempo tengo para impugnar el despido?</summary>
+        <p>Tienes 20 días hábiles desde la fecha del despido para presentar papeleta de conciliación. Es imprescindible no dejar pasar ese plazo.</p>
       </details>
       <details>
-        <summary>¿Puedo irme de la empresa si no me pagan?</summary>
-        <p>Sí. Si la empresa no paga el salario puedes solicitar la extinción del contrato por incumplimiento, lo que equivale a un despido improcedente con derecho a indemnización.</p>
+        <summary>¿Qué indemnización me corresponde?</summary>
+        <p>En un despido improcedente te corresponden 33 días de salario por año trabajado (con un máximo de 24 mensualidades) para contratos desde 2012.</p>
       </details>
     </div>
 
@@ -233,10 +231,10 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Cómo reclamar un salario impagado en España?",
+      "name": "¿Cuánto tiempo tengo para impugnar un despido en España?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El primer paso es enviar una carta formal de reclamación a la empresa. Si no responden, puedes acudir al Juzgado de lo Social o denunciar ante la Inspección de Trabajo. El plazo de prescripción es de 1 año."
+        "text": "Tienes 20 días hábiles desde la fecha de efectos del despido para presentar la papeleta de conciliación previa al juicio. Es un plazo de caducidad que no se puede recuperar."
       }
     }
   ]
@@ -260,34 +258,16 @@
       fecha: document.getElementById('fecha').value,
       empresa: document.getElementById('empresa').value,
       responsable: document.getElementById('responsable').value,
-      meses: document.getElementById('meses').value,
-      importe: document.getElementById('importe').value,
-      plazo: document.getElementById('plazo').value,
-      reclamacionprevia: document.getElementById('reclamacionprevia').value,
+      fechadespido: document.getElementById('fechadespido').value,
+      tipodespido: document.getElementById('tipodespido').value,
+      motivoempresa: document.getElementById('motivoempresa').value,
+      años: document.getElementById('años').value,
     };
-  }
-
-  function construirCuerpo(d) {
-    const reclamacionTexto = {
-      'no': '',
-      'si': ' A pesar de haberlo reclamado verbalmente en reiteradas ocasiones, la situación no ha sido subsanada.',
-      'escrito': ' A pesar de haberlo reclamado previamente por escrito, la situación no ha sido subsanada.'
-    }[d.reclamacionprevia] || '';
-
-    return `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni}, ocupando el puesto de ${d.puesto} en su empresa, me dirijo a ustedes para reclamar formalmente el abono de los salarios correspondientes a ${d.meses}, que a la fecha de esta carta permanecen impagados.${reclamacionTexto}
-
-El importe total adeudado asciende a ${d.importe}, cantidad que les requiero abonen en el plazo máximo de ${d.plazo} días hábiles desde la recepción de esta comunicación.
-
-En caso de no atender esta reclamación en el plazo indicado, me veré en la obligación de ejercitar las acciones legales que me corresponden, incluyendo la presentación de demanda ante el Juzgado de lo Social y/o denuncia ante la Inspección de Trabajo, con las consecuencias que ello pudiera conllevar para la empresa.
-
-Todo ello sin perjuicio de los intereses por mora que pudieran corresponder según la normativa laboral vigente.
-
-Ruego acusen recibo de la presente comunicación.`;
   }
 
   function actualizar() {
     const d = obtenerDatos();
-    const relleno = d.nombre && d.dni && d.puesto && d.empresa && d.meses && d.importe;
+    const relleno = d.nombre && d.dni && d.puesto && d.empresa && d.fechadespido && d.años;
     document.getElementById('btnPagar').classList.toggle('disabled', !relleno);
 
     if (!d.nombre && !d.empresa) {
@@ -329,14 +309,14 @@ Por medio de la presente, yo, ${d.nombre || '[nombre]'}, con DNI ${d.dni || '[DN
       const response = await fetch('/api/guardar-datos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...d, tipo: 'reclamacion-salario' })
+        body: JSON.stringify({ ...d, tipo: 'respuesta-despido' })
       });
 
       const data = await response.json();
       localStorage.setItem('bin_id', data.binId);
 
       // REEMPLAZA CON TU PAYMENT LINK DE STRIPE PARA ESTA CARTA:
-      window.location.href = 'https://buy.stripe.com/TU_LINK_RECLAMACION';
+      window.location.href = 'https://buy.stripe.com/TU_LINK_DESPIDO';
 
     } catch (err) {
       btn.textContent = 'Descargar carta en PDF — 2,99€';

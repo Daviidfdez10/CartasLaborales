@@ -80,14 +80,65 @@ async function cargarDatos() {
 function descargarPDF() {
   if (!d) { alert('No se encontraron los datos. Vuelve atrás.'); return; }
 
-  const motivoTexto = d.motivo ? `, por ${d.motivo},` : '';
-  const cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni} y ocupando el puesto de ${d.puesto} en su empresa${motivoTexto} comunico mi decisión de causar baja voluntaria en la misma.
+  let asunto = '';
+  let cuerpo = '';
+  let nombreArchivo = 'carta-laboral';
+  const tipo = d.tipo || 'baja-voluntaria';
+
+  if (tipo === 'baja-voluntaria') {
+    asunto = 'Comunicación de baja voluntaria';
+    nombreArchivo = 'carta-baja-voluntaria';
+    const motivoTexto = d.motivo ? `, por ${d.motivo},` : '';
+    cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni} y ocupando el puesto de ${d.puesto} en su empresa${motivoTexto} comunico mi decisión de causar baja voluntaria en la misma.
 
 De acuerdo con lo establecido en el convenio colectivo aplicable, les notifico con un preaviso de ${d.preaviso} días naturales, siendo mi último día de trabajo el ${formatearFecha(d.ultimodia)}.
 
 Agradezco la oportunidad y quedo a su disposición para facilitar la transición.
 
 Ruego acusen recibo de la presente comunicación.`;
+
+  } else if (tipo === 'reclamacion-salario') {
+    asunto = 'Reclamación de salario impagado';
+    nombreArchivo = 'reclamacion-salario';
+    const reclamacionTexto = {
+      'no': '',
+      'si': ' A pesar de haberlo reclamado verbalmente, la situación no ha sido subsanada.',
+      'escrito': ' A pesar de haberlo reclamado por escrito, la situación no ha sido subsanada.'
+    }[d.reclamacionprevia] || '';
+    cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni}, ocupando el puesto de ${d.puesto} en su empresa, reclamo formalmente el abono de los salarios correspondientes a ${d.meses}, que permanecen impagados.${reclamacionTexto}
+
+El importe total adeudado asciende a ${d.importe}, cantidad que les requiero abonen en el plazo máximo de ${d.plazo} días hábiles.
+
+En caso contrario, ejercitaré las acciones legales correspondientes ante el Juzgado de lo Social y/o la Inspección de Trabajo.
+
+Ruego acusen recibo de la presente comunicación.`;
+ } else if (tipo === 'respuesta-despido') {
+  asunto = 'Impugnación de despido';
+  nombreArchivo = 'respuesta-despido';
+  const motivoTexto = d.motivoempresa ? ` alegando ${d.motivoempresa}` : '';
+  cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni}, con una antigüedad de ${d.años} en su empresa, manifiesto mi disconformidad con el despido comunicado con fecha ${formatearFecha(d.fechadespido)}${motivoTexto}.
+
+Considero que dicho despido carece de causa justificada suficiente y por tanto debe ser calificado como IMPROCEDENTE, con las consecuencias legales que ello conlleva en cuanto a indemnización y demás derechos que me asisten.
+
+Me reservo todas las acciones legales que me corresponden, incluida la presentación de papeleta de conciliación y posterior demanda ante el Juzgado de lo Social en el plazo legalmente establecido.
+
+Ruego acusen recibo de la presente comunicación.`;
+} else if (tipo === 'reclamacion-vacaciones') {
+  asunto = 'Reclamación de vacaciones no disfrutadas';
+  nombreArchivo = 'reclamacion-vacaciones';
+  cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni}, reclamo el abono o disfrute de ${d.dias} días de vacaciones correspondientes al año ${d.año}, que a la fecha permanecen pendientes.\n\nLes requiero que en el plazo de ${d.plazo} días hábiles procedan a fijar las fechas de disfrute o, en su caso, a abonar la compensación económica correspondiente.\n\nRuego acusen recibo de la presente comunicación.`;
+
+} else if (tipo === 'excedencia-voluntaria') {
+  asunto = 'Solicitud de excedencia voluntaria';
+  nombreArchivo = 'excedencia-voluntaria';
+  const motivoTexto = d.motivo ? ` por ${d.motivo}` : '';
+  cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni}, con una antigüedad de ${d.antiguedad} en la empresa, y al amparo de lo establecido en el artículo 46 del Estatuto de los Trabajadores, solicito formalmente una excedencia voluntaria${motivoTexto}.\n\nDuración solicitada: ${d.duracion}\nFecha de inicio: ${formatearFecha(d.inicio)}\n\nRuego acusen recibo y me comuniquen la aceptación en el plazo establecido.`;
+
+} else if (tipo === 'denuncia-inspeccion') {
+  asunto = 'Denuncia ante la Inspección Provincial de Trabajo';
+  nombreArchivo = 'denuncia-inspeccion';
+  cuerpo = `D./Dña. ${d.nombre}, con DNI ${d.dni}${d.telefono ? ` y teléfono ${d.telefono}` : ''}, comparece ante la Inspección Provincial de Trabajo y formula DENUNCIA contra la empresa ${d.empresa}${d.cif ? ` (CIF: ${d.cif})` : ''}, con domicilio en ${d.direccion}, por los siguientes hechos:\n\n${d.hechos}\n\nPor lo expuesto, solicita que la Inspección de Trabajo gire visita a la empresa denunciada y adopte las medidas oportunas conforme a la normativa laboral vigente.\n\nSolicita asimismo que su identidad sea tratada con carácter confidencial.`;
+}
 
   generarPDF({
     nombre: d.nombre,
@@ -96,9 +147,9 @@ Ruego acusen recibo de la presente comunicación.`;
     fecha: formatearFecha(d.fecha),
     empresa: d.empresa,
     responsable: d.responsable || 'Departamento de RRHH',
-    asunto: 'Comunicación de baja voluntaria',
-    cuerpo: cuerpo,
-    nombreArchivo: 'carta-baja-voluntaria',
+    asunto,
+    cuerpo,
+    nombreArchivo,
   });
 
   localStorage.removeItem('bin_id');

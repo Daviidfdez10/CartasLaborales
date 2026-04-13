@@ -3,27 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta de Reclamación de Salario Impagado — Modelo 2025 | PDF al instante</title>
-  <meta name="description" content="Reclama tu salario impagado en 2 minutos. Modelo actualizado, válido legalmente. Descarga en PDF por solo 2,99€. Sin registro.">
-  <link rel="canonical" href="https://cartaslaborales.es/reclamacion-salario">
+  <title>Solicitud de Excedencia Voluntaria — Modelo 2025 | PDF al instante</title>
+  <meta name="description" content="Solicita tu excedencia voluntaria en 2 minutos. Modelo actualizado, válido legalmente. Descarga en PDF por solo 2,99€. Sin registro.">
+  <link rel="canonical" href="https://cartaslaborales.es/excedencia-voluntaria">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --verde: #1a6b4a; --verde-claro: #e8f5ee; --verde-mid: #2d9966;
-      --negro: #111; --gris: #555; --gris-claro: #f5f4f0;
-      --borde: #e0ddd6; --blanco: #fff;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'DM Sans', system-ui, sans-serif;
-    }
+    :root { --verde: #1a6b4a; --verde-claro: #e8f5ee; --verde-mid: #2d9966; --negro: #111; --gris: #555; --gris-claro: #f5f4f0; --borde: #e0ddd6; --blanco: #fff; --font-display: 'Fraunces', Georgia, serif; --font-body: 'DM Sans', system-ui, sans-serif; }
     body { font-family: var(--font-body); background: var(--gris-claro); color: var(--negro); }
     nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid var(--borde); background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 100; }
     .logo { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--verde); text-decoration: none; }
     .logo span { color: var(--negro); }
     .nav-back { font-size: 14px; color: var(--gris); text-decoration: none; }
-    .nav-back:hover { color: var(--negro); }
     .layout { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; display: grid; grid-template-columns: 1fr 420px; gap: 2rem; align-items: start; }
     @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } .sidebar { order: -1; } }
     .panel { background: var(--blanco); border-radius: 16px; border: 1px solid var(--borde); overflow: hidden; }
@@ -57,7 +50,7 @@
     .pay-features { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.5rem; }
     .pay-features li { font-size: 13px; color: var(--gris); display: flex; align-items: center; gap: 8px; }
     .pay-features li::before { content: '✓'; color: var(--verde-mid); font-weight: 500; flex-shrink: 0; }
-    .btn-pay { display: block; width: 100%; padding: 14px; background: var(--verde); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; font-family: var(--font-body); cursor: pointer; text-align: center; text-decoration: none; transition: background 0.15s; }
+    .btn-pay { display: block; width: 100%; padding: 14px; background: var(--verde); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; font-family: var(--font-body); cursor: pointer; text-align: center; transition: background 0.15s; }
     .btn-pay:hover { background: #145538; }
     .btn-pay.disabled { background: #ccc; cursor: not-allowed; pointer-events: none; }
     .pay-note { font-size: 11px; color: var(--gris); text-align: center; margin-top: 10px; }
@@ -73,280 +66,136 @@
   </style>
 </head>
 <body>
-
 <nav>
   <a href="/index.html" class="logo">cartas<span>laborales</span></a>
   <a href="/index.html" class="nav-back">← Todos los documentos</a>
 </nav>
-
 <div class="layout">
-
   <div class="panel">
     <div class="panel-header">
-      <div class="breadcrumb"><a href="/index.html">Inicio</a> → Reclamación de salario</div>
-      <h1>Reclamación de salario impagado</h1>
-      <p>Reclama formalmente los salarios que te deben antes de acudir a la vía judicial.</p>
+      <div class="breadcrumb"><a href="/index.html">Inicio</a> → Excedencia voluntaria</div>
+      <h1>Solicitud de excedencia voluntaria</h1>
+      <p>Pide una pausa en tu contrato de forma correcta para que la empresa no pueda negársela.</p>
     </div>
-
     <div class="panel-body">
-
       <div>
         <div class="section-title">Tus datos</div>
         <div class="fields">
           <div class="row2">
-            <div class="field">
-              <label>Nombre completo *</label>
-              <input id="nombre" type="text" placeholder="Ana García López" oninput="actualizar()">
-            </div>
-            <div class="field">
-              <label>DNI *</label>
-              <input id="dni" type="text" placeholder="12345678A" oninput="actualizar()">
-            </div>
+            <div class="field"><label>Nombre completo *</label><input id="nombre" type="text" placeholder="Ana García López" oninput="actualizar()"></div>
+            <div class="field"><label>DNI *</label><input id="dni" type="text" placeholder="12345678A" oninput="actualizar()"></div>
           </div>
           <div class="row2">
-            <div class="field">
-              <label>Puesto de trabajo *</label>
-              <input id="puesto" type="text" placeholder="Administrativo/a" oninput="actualizar()">
-            </div>
-            <div class="field">
-              <label>Fecha de la carta *</label>
-              <input id="fecha" type="date" oninput="actualizar()">
-            </div>
+            <div class="field"><label>Puesto de trabajo *</label><input id="puesto" type="text" placeholder="Administrativo/a" oninput="actualizar()"></div>
+            <div class="field"><label>Antigüedad en la empresa *</label><input id="antiguedad" type="text" placeholder="Ej: 2 años" oninput="actualizar()"></div>
           </div>
+          <div class="field"><label>Fecha de la carta *</label><input id="fecha" type="date" oninput="actualizar()"></div>
         </div>
       </div>
-
       <hr class="divider">
-
       <div>
         <div class="section-title">Datos de la empresa</div>
         <div class="fields">
           <div class="row2">
-            <div class="field">
-              <label>Nombre de la empresa *</label>
-              <input id="empresa" type="text" placeholder="Empresa S.L." oninput="actualizar()">
-            </div>
-            <div class="field">
-              <label>Responsable / RRHH</label>
-              <input id="responsable" type="text" placeholder="Departamento de RRHH" oninput="actualizar()">
-            </div>
+            <div class="field"><label>Nombre de la empresa *</label><input id="empresa" type="text" placeholder="Empresa S.L." oninput="actualizar()"></div>
+            <div class="field"><label>Responsable / RRHH</label><input id="responsable" type="text" placeholder="Departamento de RRHH" oninput="actualizar()"></div>
           </div>
         </div>
       </div>
-
       <hr class="divider">
-
       <div>
-        <div class="section-title">Detalles de la reclamación</div>
+        <div class="section-title">Detalles de la excedencia</div>
         <div class="fields">
           <div class="row2">
-            <div class="field">
-              <label>Meses impagados *</label>
-              <input id="meses" type="text" placeholder="Ej: enero y febrero de 2025" oninput="actualizar()">
-            </div>
-            <div class="field">
-              <label>Importe total reclamado *</label>
-              <input id="importe" type="text" placeholder="Ej: 2.400€" oninput="actualizar()">
-            </div>
-          </div>
-          <div class="row2">
-            <div class="field">
-              <label>Plazo para pagar</label>
-              <select id="plazo" onchange="actualizar()">
-                <option value="5">5 días hábiles</option>
-                <option value="10">10 días hábiles</option>
-                <option value="15">15 días hábiles</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>¿Has reclamado antes?</label>
-              <select id="reclamacionprevia" onchange="actualizar()">
-                <option value="no">No, es la primera vez</option>
-                <option value="si">Sí, verbalmente</option>
-                <option value="escrito">Sí, por escrito</option>
+            <div class="field"><label>Fecha de inicio *</label><input id="inicio" type="date" oninput="actualizar()"></div>
+            <div class="field"><label>Duración solicitada *</label>
+              <select id="duracion" onchange="actualizar()">
+                <option value="4 meses">4 meses</option>
+                <option value="6 meses">6 meses</option>
+                <option value="1 año">1 año</option>
+                <option value="2 años">2 años</option>
+                <option value="3 años">3 años</option>
+                <option value="4 años">4 años</option>
+                <option value="5 años">5 años (máximo legal)</option>
               </select>
             </div>
           </div>
+          <div class="field"><label>Motivo (opcional)</label><input id="motivo" type="text" placeholder="Ej: motivos personales, proyecto propio..." oninput="actualizar()"></div>
         </div>
       </div>
-
     </div>
   </div>
-
   <div class="sidebar">
-
     <div class="preview-card">
-      <div class="preview-header">
-        <span>Vista previa</span>
-        <span class="preview-badge">En tiempo real</span>
-      </div>
+      <div class="preview-header"><span>Vista previa</span><span class="preview-badge">En tiempo real</span></div>
       <div class="preview-body">
         <div id="preview-texto">Rellena los datos del formulario para ver tu carta aquí...</div>
-        <div class="preview-blur">
-          <span class="preview-lock">🔒 Paga para descargar la carta completa en PDF</span>
-        </div>
+        <div class="preview-blur"><span class="preview-lock">🔒 Paga para descargar la carta completa en PDF</span></div>
       </div>
     </div>
-
     <div class="pay-card">
-      <div class="pay-price-row">
-        <div class="pay-price">2,99 €</div>
-        <div style="font-size:13px;color:var(--gris);">pago único</div>
-      </div>
+      <div class="pay-price-row"><div class="pay-price">2,99 €</div><div style="font-size:13px;color:var(--gris);">pago único</div></div>
       <div class="pay-desc">Descarga tu carta en PDF lista para entregar</div>
       <ul class="pay-features">
         <li>PDF profesional descargable al instante</li>
         <li>Carta personalizada con tus datos</li>
         <li>Válida legalmente en toda España</li>
         <li>Sin suscripción ni cargos extra</li>
-        <li>No guardamos ningún dato tuyo</li>
       </ul>
-      <button class="btn-pay disabled" id="btnPagar" onclick="guardarYPagar(event)">
-        Descargar carta en PDF — 2,99€
-      </button>
+      <button class="btn-pay disabled" id="btnPagar" onclick="guardarYPagar(event)">Descargar carta en PDF — 2,99€</button>
       <p class="pay-note">🔒 Pago seguro con Stripe · No almacenamos tus datos</p>
     </div>
-
     <div class="faq-inline">
       <div class="faq-inline-title">Preguntas frecuentes</div>
-      <details>
-        <summary>¿Cuándo puedo reclamar el salario?</summary>
-        <p>Puedes reclamar en cuanto la empresa no te paga en la fecha acordada. El plazo para reclamar por vía judicial es de 1 año desde que debiste cobrar.</p>
-      </details>
-      <details>
-        <summary>¿Qué pasa si no me pagan tras la carta?</summary>
-        <p>Puedes presentar una demanda en el Juzgado de lo Social o una denuncia ante la Inspección de Trabajo. Esta carta es el paso previo recomendado.</p>
-      </details>
-      <details>
-        <summary>¿Puedo irme de la empresa si no me pagan?</summary>
-        <p>Sí. Si la empresa no paga el salario puedes solicitar la extinción del contrato por incumplimiento, lo que equivale a un despido improcedente con derecho a indemnización.</p>
-      </details>
+      <details><summary>¿Cuánta antigüedad necesito para pedir excedencia?</summary><p>Al menos 1 año de antigüedad en la empresa. Además, no puedes pedir otra excedencia hasta que hayan pasado 4 años desde el final de la anterior.</p></details>
+      <details><summary>¿Me pueden denegar la excedencia?</summary><p>No pueden denegártela si cumples los requisitos legales. La excedencia voluntaria es un derecho reconocido en el Estatuto de los Trabajadores.</p></details>
+      <details><summary>¿Tengo derecho a volver a mi puesto?</summary><p>Tienes derecho preferente a ocupar vacantes de igual o similar categoría, pero no necesariamente tu mismo puesto exacto.</p></details>
     </div>
-
   </div>
 </div>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Cómo reclamar un salario impagado en España?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El primer paso es enviar una carta formal de reclamación a la empresa. Si no responden, puedes acudir al Juzgado de lo Social o denunciar ante la Inspección de Trabajo. El plazo de prescripción es de 1 año."
-      }
-    }
-  ]
-}
-</script>
-
-<footer>
-  © 2025 Cartaslaborales.es · <a href="/privacidad.html" style="color:inherit;">Privacidad</a> · <a href="/aviso-legal.html" style="color:inherit;">Aviso legal</a>
-</footer>
-
+<footer>© 2025 Cartaslaborales.es · <a href="/privacidad.html" style="color:inherit;">Privacidad</a> · <a href="/aviso-legal.html" style="color:inherit;">Aviso legal</a></footer>
 <script src="js/generador.js"></script>
 <script>
-  const hoy = new Date().toISOString().split('T')[0];
-  document.getElementById('fecha').value = hoy;
-
+  document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
   function obtenerDatos() {
     return {
       nombre: document.getElementById('nombre').value,
       dni: document.getElementById('dni').value,
       puesto: document.getElementById('puesto').value,
+      antiguedad: document.getElementById('antiguedad').value,
       fecha: document.getElementById('fecha').value,
       empresa: document.getElementById('empresa').value,
       responsable: document.getElementById('responsable').value,
-      meses: document.getElementById('meses').value,
-      importe: document.getElementById('importe').value,
-      plazo: document.getElementById('plazo').value,
-      reclamacionprevia: document.getElementById('reclamacionprevia').value,
+      inicio: document.getElementById('inicio').value,
+      duracion: document.getElementById('duracion').value,
+      motivo: document.getElementById('motivo').value,
     };
   }
-
-  function construirCuerpo(d) {
-    const reclamacionTexto = {
-      'no': '',
-      'si': ' A pesar de haberlo reclamado verbalmente en reiteradas ocasiones, la situación no ha sido subsanada.',
-      'escrito': ' A pesar de haberlo reclamado previamente por escrito, la situación no ha sido subsanada.'
-    }[d.reclamacionprevia] || '';
-
-    return `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni}, ocupando el puesto de ${d.puesto} en su empresa, me dirijo a ustedes para reclamar formalmente el abono de los salarios correspondientes a ${d.meses}, que a la fecha de esta carta permanecen impagados.${reclamacionTexto}
-
-El importe total adeudado asciende a ${d.importe}, cantidad que les requiero abonen en el plazo máximo de ${d.plazo} días hábiles desde la recepción de esta comunicación.
-
-En caso de no atender esta reclamación en el plazo indicado, me veré en la obligación de ejercitar las acciones legales que me corresponden, incluyendo la presentación de demanda ante el Juzgado de lo Social y/o denuncia ante la Inspección de Trabajo, con las consecuencias que ello pudiera conllevar para la empresa.
-
-Todo ello sin perjuicio de los intereses por mora que pudieran corresponder según la normativa laboral vigente.
-
-Ruego acusen recibo de la presente comunicación.`;
-  }
-
   function actualizar() {
     const d = obtenerDatos();
-    const relleno = d.nombre && d.dni && d.puesto && d.empresa && d.meses && d.importe;
+    const relleno = d.nombre && d.dni && d.puesto && d.empresa && d.antiguedad && d.inicio;
     document.getElementById('btnPagar').classList.toggle('disabled', !relleno);
-
-    if (!d.nombre && !d.empresa) {
-      document.getElementById('preview-texto').textContent = 'Rellena los datos del formulario para ver tu carta aquí...';
-      return;
-    }
-
-    const preview = `${d.nombre || '[Tu nombre]'}
-DNI: ${d.dni || '[DNI]'}
-${d.puesto || '[Puesto]'}
-
-${d.empresa || '[Empresa]'}
-A/A: ${d.responsable || 'Departamento de RRHH'}
-
-${formatearFecha(d.fecha)}
-
-
-Estimados señores/as:
-
-Por medio de la presente, yo, ${d.nombre || '[nombre]'}, con DNI ${d.dni || '[DNI]'}...`;
-
-    document.getElementById('preview-texto').textContent = preview;
+    if (!d.nombre && !d.empresa) { document.getElementById('preview-texto').textContent = 'Rellena los datos del formulario para ver tu carta aquí...'; return; }
+    document.getElementById('preview-texto').textContent = `${d.nombre || '[Tu nombre]'}\nDNI: ${d.dni || '[DNI]'}\n${d.puesto || '[Puesto]'}\n\n${d.empresa || '[Empresa]'}\nA/A: ${d.responsable || 'Departamento de RRHH'}\n\n${formatearFecha(d.fecha)}\n\nEstimados señores/as:\n\nPor medio de la presente, yo, ${d.nombre || '[nombre]'}, con DNI ${d.dni || '[DNI]'}...`;
   }
-
   async function guardarYPagar(e) {
     e.preventDefault();
     const btn = document.getElementById('btnPagar');
-    if (btn.classList.contains('disabled')) {
-      alert('Por favor, rellena todos los campos obligatorios.');
-      return;
-    }
-
+    if (btn.classList.contains('disabled')) { alert('Por favor, rellena todos los campos obligatorios.'); return; }
     btn.textContent = 'Guardando datos...';
     btn.style.pointerEvents = 'none';
-
-    const d = obtenerDatos();
-
     try {
-      const response = await fetch('/api/guardar-datos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...d, tipo: 'reclamacion-salario' })
-      });
-
+      const response = await fetch('/api/guardar-datos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...obtenerDatos(), tipo: 'excedencia-voluntaria' }) });
       const data = await response.json();
       localStorage.setItem('bin_id', data.binId);
-
-      // REEMPLAZA CON TU PAYMENT LINK DE STRIPE PARA ESTA CARTA:
-      window.location.href = 'https://buy.stripe.com/TU_LINK_RECLAMACION';
-
+      window.location.href = 'https://buy.stripe.com/TU_LINK_EXCEDENCIA';
     } catch (err) {
       btn.textContent = 'Descargar carta en PDF — 2,99€';
       btn.style.pointerEvents = 'auto';
       alert('Error al procesar. Inténtalo de nuevo.');
     }
   }
-
   actualizar();
 </script>
-
 </body>
 </html>
