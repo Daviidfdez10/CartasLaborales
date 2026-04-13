@@ -450,19 +450,35 @@ Por medio de la presente, yo, ${d.nombre || '[nombre]'}, con DNI...`;
   document.getElementById('preview-texto').textContent = previewCompleto;
 }
 
-function guardarYPagar(e) {
+async function guardarYPagar(e) {
   e.preventDefault();
   const btn = document.getElementById('btnPagar');
   if (btn.classList.contains('disabled')) {
     alert('Por favor, rellena al menos tu nombre, DNI, puesto y empresa.');
     return;
   }
+
+  btn.textContent = 'Guardando datos...';
+  btn.style.pointerEvents = 'none';
+
   const d = obtenerDatos();
-  localStorage.setItem('carta_datos', JSON.stringify(d));
-  localStorage.setItem('carta_tipo', 'baja-voluntaria');
 
+  try {
+    const response = await fetch('/api/guardar-datos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...d, tipo: 'baja-voluntaria' })
+    });
 
-  window.location.href = 'https://buy.stripe.com/dRm4gzbBog04dhK75YcfK00';
+    const data = await response.json();
+    localStorage.setItem('bin_id', data.binId);
+    window.location.href = 'https://buy.stripe.com/TU_LINK_REAL';
+
+  } catch (err) {
+    btn.textContent = 'Descargar carta en PDF — 2,99€';
+    btn.style.pointerEvents = 'auto';
+    alert('Error al procesar. Inténtalo de nuevo.');
+  }
 }
 
   function generarCartaPDF() {

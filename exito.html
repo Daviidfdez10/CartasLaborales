@@ -47,9 +47,10 @@
   <h1>¡Pago completado!</h1>
   <p>Tu carta está lista. Haz clic en el botón para descargar el PDF. Si tienes cualquier problema, escríbenos.</p>
 
-  <button class="btn" id="btnDescargar" onclick="descargarPDF()">
-    Descargar mi carta en PDF
-  </button>
+<div class="loading" id="loading">Cargando tus datos...</div>
+<button class="btn" id="btnDescargar" style="display:none" onclick="descargarPDF()">
+  Descargar mi carta en PDF
+</button>
   <a href="/index.html" class="btn-sec">Volver al inicio</a>
 
   <p class="nota">El PDF se genera en tu navegador. No guardamos ninguno de tus datos personales.</p>
@@ -58,41 +59,26 @@
 <script src="js/generador.js"></script>
 <script>
  // Lee datos de URL params (método principal) o localStorage (respaldo)
-const urlParams = new URLSearchParams(window.location.search);
-const tieneParams = urlParams.get('nombre');
+let d = null;
 
-let d, tipo;
-
-if (tieneParams) {
-  d = Object.fromEntries(urlParams);
-  tipo = urlParams.get('tipo');
-} else {
-  const raw = localStorage.getItem('carta_datos');
-  tipo = localStorage.getItem('carta_tipo');
-  d = raw ? JSON.parse(raw) : null;
-}
-
-if (!d || !d.nombre) {
-  document.getElementById('btnDescargar').textContent = 'No se encontraron datos — vuelve atrás';
-  document.getElementById('btnDescargar').onclick = () => history.back();
-}
-
-function descargarPDF() {
-  if (!d || !d.nombre) {
-    alert('No se encontraron los datos. Vuelve atrás y rellena el formulario de nuevo.');
+async function cargarDatos() {
+  const binId = localStorage.getItem('bin_id');
+  if (!binId) {
+    document.getElementById('loading').textContent = 'No se encontraron datos. Vuelve atrás.';
     return;
   }
-  let asunto = '', cuerpo = '', nombreArchivo = 'carta-laboral';
-  if (tipo === 'baja-voluntaria') {
-    asunto = 'Comunicación de baja voluntaria';
-    nombreArchivo = 'carta-baja-voluntaria';
-    const motivoTexto = d.motivo ? `, por ${d.motivo},` : '';
-    cuerpo = `Por medio de la presente, yo, ${d.nombre}, con DNI ${d.dni} y ocupando el puesto de ${d.puesto} en su empresa${motivoTexto} comunico mi decisión de causar baja voluntaria en la misma.\n\nDe acuerdo con lo establecido en el convenio colectivo aplicable, les notifico con un preaviso de ${d.preaviso} días naturales, siendo mi último día de trabajo el ${formatearFecha(d.ultimodia)}.\n\nAgradezco la oportunidad y quedo a su disposición para facilitar la transición.\n\nRuego acusen recibo de la presente comunicación.`;
+  try {
+    const response = await fetch('/api/obtener-datos?binId=' + binId);
+    d = await response.json();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('btnDescargar').style.display = 'block';
+  } catch (err) {
+    document.getElementById('loading').textContent = 'Error al cargar datos. Escríbenos a hola@cartaslaborales.es';
   }
-  generarPDF({ nombre: d.nombre, dni: d.dni, puesto: d.puesto, fecha: formatearFecha(d.fecha), empresa: d.empresa, responsable: d.responsable || 'Departamento de RRHH', asunto, cuerpo, nombreArchivo });
-  localStorage.removeItem('carta_datos');
-  localStorage.removeItem('carta_tipo');
 }
+
+cargarDatos();
+
 </script>
 </body>
 </html>
