@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/blog", "dest": "/blog/index.html" },
+    { "src": "/blog/", "dest": "/blog/index.html" },
+    { "src": "/baja-voluntaria", "dest": "/baja-voluntaria.html" },
+    { "src": "/exito", "dest": "/exito.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
